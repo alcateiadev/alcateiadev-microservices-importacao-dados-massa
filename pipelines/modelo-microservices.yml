@@ -1,0 +1,35 @@
+  node {
+    def mvnHome
+    stage('Clone') {
+  checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: true, recursiveSubmodules: true, reference: '', trackingSubmodules: true]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/alcateiadev/alcateiadev-microservices-importacao-dados-massa.git']]])
+    mvnHome = tool 'mv3'
+  CODE_SC_HG = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+  }
+
+    stage('Install') {
+    dir('leitor-ftp') {
+    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install -DskipTests "
+  }
+  }
+
+    stage('Sonar') {
+    dir('leitor-ftp') {
+    sh "'${mvnHome}/bin/mvn' clean install sonar:sonar -Dsonar.host.url=http://192.168.0.15:9000 "
+  }
+  }
+
+    stage('Docker') {
+    dir('leitor-ftp') {
+    sh "docker build -t leitor-ftp:"+CODE_SC_HG+" . "
+  }
+  }
+
+    stage('Docker Swarm') {
+    dir('docker') {
+    dir('microservices') {
+    sh "CODE_SC_HG="+CODE_SC_HG+" docker stack deploy --compose-file docker-leitor-ftp.yml microservices "
+  }
+  }
+  }
+
+  }
