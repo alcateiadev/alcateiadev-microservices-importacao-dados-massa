@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   processar-dados:
-    image: "gravar-processar-dados:${CODE_SC_HG}"
+    image: "processar-dados:${CODE_SC_HG}"
     ports:
       - 8088:8088
     environment:
