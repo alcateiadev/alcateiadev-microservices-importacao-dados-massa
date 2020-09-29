@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer
+    ports:
+      - 9001:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/vagrant/docker/data/portainer:/data
+    deploy:
+      mode: replicated
+      replicas: 1
+

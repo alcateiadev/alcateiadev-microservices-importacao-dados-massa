@@ -1,0 +1,16 @@
+kafka:
+  bootstrap-servers: 127.0.0.1:9092
+  consumergroup: leitorftp-group
+  topictopics1: topic-transformar-arquivo-s1
+  topictopics2: topic-transformar-arquivo-s2
+  producer:
+    max:
+      request:
+        size: 231072000
+    batch-size: 60000000
+    buffer-memory: 60000000
+  client-id: leitor-ftp-producer
+  consumer:
+    group-id: leitorftp-group
+    auto-offset-reset: earliest
+    enable-auto-commit: false

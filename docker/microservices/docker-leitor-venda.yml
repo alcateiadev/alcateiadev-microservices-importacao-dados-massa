@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  leitor-venda:
+    image: "leitor-venda:${CODE_SC_HG}"
+    ports:
+      - 8087:8087
+    environment:
+      - spring_datasource_url=jdbc:postgresql://192.168.0.15/gnus
+      - kafka_bootstrap-servers=192.168.0.15:9092
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+

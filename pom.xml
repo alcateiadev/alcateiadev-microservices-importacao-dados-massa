@@ -1,0 +1,22 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.br.alcateiadev.leitorvendedor</groupId>
+	<artifactId>gnus-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>gnus-parent</name>
+
+    <modules>
+		<module>leitor-ftp</module>
+		<module>gravar-vendedor</module>
+		<module>leitor-vendedor</module>
+		<module>leitor-venda</module>
+		<module>gravar-venda</module>
+		<module>processar-dados</module>
+    </modules>
+    
+</project>

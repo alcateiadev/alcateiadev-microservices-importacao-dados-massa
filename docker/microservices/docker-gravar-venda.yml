@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  gravar-venda:
+    image: "gravar-venda:${CODE_SC_HG}"
+    ports:
+      - 8086:8086
+    environment:
+      - spring_datasource_url=jdbc:postgresql://192.168.0.15/vendadb
+      - kafka_bootstrap-servers=192.168.0.15:9092
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+

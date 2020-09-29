@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  ftpd_server:
+    image: stilliard/pure-ftpd
+    container_name: pure-ftpd
+    ports:
+      - "2121:21"
+      - "30000-30009:30000-30009"
+#    volumes: 
+#      - "/folder_on_disk/data:/home/username/"
+#      - "/folder_on_disk/passwd:/etc/pure-ftpd/passwd"
+    environment:
+      PUBLICHOST: "localhost"
+      FTP_USER_NAME: usuario
+      FTP_USER_PASS: senha
+      FTP_USER_HOME: /home/username
+# also for ssl/tls:
+#      ADDED_FLAGS: "--tls=2"
+    restart: always

@@ -1,0 +1,14 @@
+node {
+   def mvnHome
+   stage('Clone') {
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: true, recursiveSubmodules: true, reference: '', trackingSubmodules: true]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/alcateiadev/alcateiadev-microservices-importacao-dados-massa.git']]])
+      mvnHome = tool 'mv3'
+   }
+
+   stage('Install ') {
+       dir('docker') {
+           sh "docker stack deploy --compose-file docker-kafka.yml kafka "
+       }
+   }
+
+}

@@ -1,0 +1,117 @@
+
+    public static void main(String[] args) throws IOException {
+
+        List<String> list = new ArrayList<>();
+
+        list.add("Alexandre#12345678902#10");
+        list.add("André#12345678903#11");
+        list.add("Antônio#12345678904#12");
+        list.add("Augusto#12345678905#13");
+        list.add("Breno#12345678906#14");
+        list.add("Bruno#12345678907#15");
+        list.add("Caio#12345678908#16");
+        list.add("Cauã#12345678909#17");
+        list.add("Daniel#12345678910#18");
+        list.add("Danilo#12345678911#19");
+        list.add("Eduardo#12345678912#20");
+        list.add("Enrico#12345678913#21");
+        list.add("Enzo#12345678914#22");
+        list.add("Erick#12345678915#23");
+        list.add("Felipe#12345678916#24");
+        list.add("Fernando#12345678917#25");
+        list.add("Francisco#12345678918#26");
+        list.add("Frederico#12345678919#27");
+        list.add("Guilherme#12345678920#28");
+        list.add("Gustavo#12345678921#29");
+        list.add("Henrique#12345678922#30");
+        list.add("Henry#12345678923#31");
+        list.add("Ian#12345678924#32");
+        list.add("Isaac#12345678925#33");
+        list.add("João#12345678926#34");
+        list.add("Kaique#12345678927#35");
+        list.add("Leonardo#12345678928#36");
+        list.add("Luan#12345678929#37");
+        list.add("Lucas#12345678930#38");
+        list.add("Mathias#12345678931#39");
+        list.add("Murilo#12345678932#40");
+        list.add("Nathan#12345678933#41");
+        list.add("Otávio#12345678934#42");
+        list.add("Pietro#12345678935#43");
+        list.add("Rafael#12345678936#44");
+        list.add("Raul#12345678937#45");
+        list.add("Rian#12345678938#46");
+        list.add("Ricardo#12345678939#47");
+        list.add("Rodrigo#12345678940#48");
+        list.add("Samuel#12345678941#49");
+        list.add("Theo#12345678942#50");
+        list.add("Thiago#12345678943#51");
+        list.add("Thomas#12345678944#52");
+        list.add("Vicente#12345678945#53");
+        list.add("Vinícius#12345678946#54");
+        list.add("Vitor#12345678947#55");
+        list.add("Yago#12345678948#56");
+        list.add("Ygor#12345678949#57");
+        list.add("Yuri#12345678950#58");
+
+        List<String[]> listProduto = new ArrayList<>();
+
+        System.out.println("produto....");
+        for( int loop=0; loop < 1000; loop++) {
+            listProduto.add(new String[]{loop+"", "Produto - "+loop});
+            System.out.println(loop+"");
+        }
+
+        System.out.println("lojas.......");
+        List<String[]> listLoja = new ArrayList<>();
+        for( int loop=0; loop < 1000; loop++) {
+            listLoja.add(new String[]{loop+"", "Loja - "+loop, "1234567890001"});
+        }
+
+        System.out.println("criando arquivos....");
+        Scanner ler = new Scanner(System.in);
+
+        FileWriter arq = new FileWriter("venda.csv");
+        PrintWriter gravarArq = new PrintWriter(arq);
+
+        gravarArq.printf("[SISTEMA2]\n");
+        gravarArq.printf("[cpf-vend]#[cod-prod]#[nome-prod]#[cod-vend]#[qtd-vend]#[valor-vend]#[cnpj-loja]#[cidade-loja]#[data-vend]#[nome-vend]#\n");
+
+        Random rn = new Random();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+        for (int i=1; i<=1000000; i++) {
+
+            String vendedor = list.get(rn.nextInt(list.size()));
+            String[] vendedorSplit = vendedor.split("#");
+
+            String[] produto = listProduto.get(rn.nextInt(listProduto.size()));
+
+            String[] loja = listLoja.get(rn.nextInt(listLoja.size()));
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(vendedorSplit[1]).append("#");
+
+            sb.append(produto[0]).append("#");
+            sb.append(produto[1]).append("#");
+
+            sb.append(i).append("#");
+            sb.append(rn.nextInt(100)).append("#");
+            sb.append(rn.nextInt(1000)).append("#");
+
+            sb.append(loja[2]).append("#");
+            sb.append("Floripa").append("#");
+            sb.append(sdf.format(new Date())).append("#");
+            sb.append(loja[1]).append("#\n");
+
+            gravarArq.printf(sb.toString());
+
+            System.out.println("linha: "+i);
+        }
+
+        arq.close();
+
+        System.out.println("finalizado");
+
+
+    }
+

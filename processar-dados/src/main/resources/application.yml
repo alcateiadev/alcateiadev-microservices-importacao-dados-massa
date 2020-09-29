@@ -1,0 +1,29 @@
+kafka:
+  bootstrap-servers: 127.0.0.1:9092
+
+  request-topic-vendedor: topic-request-ler-vendedor-dia
+  reply-topic-vendedor: topic-reply-ler-vendedor-dia
+
+  request-topic-venda: topic-request-ler-venda-dia
+  reply-topic-venda: topic-reply-ler-venda-dia
+
+  consumergroup: processardados-group
+
+  topictopics1: topic-transformar-arquivo-s1
+
+  ## topico onde esta linha a linha dos dados lidos dos arquivo
+  topicgravardadoss1: topic-gravar-dados-arquivo-s1
+  topicgravardadoss2: topic-gravar-dados-arquivo-s2
+
+  topicarquivoprocessado: topic-arquivo-processado
+  producer:
+    max:
+      request:
+        size: 231072000
+    batch-size: 60000000
+    buffer-memory: 60000000
+  client-id: processardados-producer
+  consumer:
+    group-id: processardados-group
+    auto-offset-reset: earliest
+    enable-auto-commit: false
