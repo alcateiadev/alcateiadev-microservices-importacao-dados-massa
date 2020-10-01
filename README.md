@@ -10,21 +10,22 @@ Vamos aqui entender o problema de negócio, planejar os entregáveis quebrados, 
 
 Nessa última parte do curso vamos agora desenvolver/codificar todos os microservices, criar toda uma infraestrutura com Docker Swarm, Jenkins, Sonarqube, Docker.
 
+
 ** Conceitos do curso:
 
-1. Gestão de Projetos
-
-2. Comunicação entre microservice usando Kafka;
-
-3. Servidor de Arquivos;
-
-4. Devops com Docker Swarm;
-
-5. CI/CD com Jenkins;
-
-5. Qualidade com Sonarqube;
-
-6. Arquitetura de Software
+    1. Gestão de Projetos
+    
+    2. Comunicação entre microservice usando Kafka;
+    
+    3. Servidor de Arquivos;
+    
+    4. Devops com Docker Swarm;
+    
+    5. CI/CD com Jenkins;
+    
+    5. Qualidade com Sonarqube;
+    
+    6. Arquitetura de Software
 
 
    
